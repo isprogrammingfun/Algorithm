@@ -27,6 +27,26 @@
 
 ### 정리
 처음 코드
-'''java
+ ~~~java
+ import java.util.Scanner; 
 
-'''
+public class Main {
+    public static void main (String [] args){
+        Scanner sc = new Scanner(System.in);
+        
+        int num = sc.nextInt();
+        int sum = 0;
+        
+        sc.close();
+        for(int i = 1 ; i <= num; i++)
+        {
+                for(int j = 1; j <= i; j++){
+                    if(i % j == 0)
+                        sum += j;
+                }
+        }
+        System.out.println(sum);
+    }
+}
+ ~~~
+ 였는데 시간초과^^ 가 
