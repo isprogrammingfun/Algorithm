@@ -44,11 +44,11 @@ public class Main {
             int to = deliveryInfo[i].to;
             int cnt = deliveryInfo[i].cnt;
             max = 0;
-            // 지나간 구간에서 실린 박스의 최댓값
+            // 지나간 구간에서 실린 박스의 최댓값 구하기. 실을 수 있는 박스 수를 계산하기 위한 작업
             for(int j = from; j < to; j++) {
                 max = Math.max(max, box[j]);
             }
-            // 실을 수 있는 박스 수
+            // 실을 수 있는 박스 수. 남은 공간이 cnt 보다 많으면 cnt 만큼의 박스를 다 넣고, 부족하면 남은 공간, 즉 C - max 만큼만 채운다
             capacity = Math.min(C - max, cnt);
 		    total += capacity;
 		    for (int j = from; j < to; j++) {
