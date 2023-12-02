@@ -56,6 +56,6 @@ public class Main {
 		    }
 	    }
 	    // 배송할 수 있는 최대 박스 수
-	    System.out.println(total + box[N]);
+	    System.out.println(total);
     }
 }
