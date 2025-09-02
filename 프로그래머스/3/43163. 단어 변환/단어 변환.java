@@ -1,43 +1,38 @@
 import java.util.*;
-import java.io.*;
 
 class Solution {
-    static int answer = 0; 
-    static int idx = 0;
-    static boolean[] visited;
     public int solution(String begin, String target, String[] words) {
-        visited = new boolean[words.length];
+        int answer = 0;
         
-        if(Arrays.asList(words).contains(target))
-            bfs(begin, target, words);
-        
+        if(Arrays.asList(words).contains(target));
+            answer = bfs(begin, target, words);
         return answer;
     }
     
-    public static void bfs(String begin, String target, String[] words) {
+    private static int bfs(String begin, String target, String[] words) {
+        boolean visited[] = new boolean[words.length];
         Queue<Word> q = new LinkedList<>();
-        q.add(new Word(begin, 0));
         
+        q.add(new Word(begin,0));
         while(!q.isEmpty()) {
             Word w = q.poll();
+            
             for(int i = 0; i < words.length; i++) {
+                            
                 String str = w.str;
                 int cnt = w.cnt;
+
+                if(str.equals(target))
+                    return cnt;
                 
-                if(str.equals(target)){
-                    answer = cnt;
-                    return;
-                }
-                
-                if(!checkChar(str, words[i]) || visited[i] == true)
+                if(!checkStr(str, words[i]) || visited[i] == true)
                     continue;
                 
                 q.add(new Word(words[i], cnt+1));
                 visited[i] = true; 
             }
-            
         }
-        
+        return 0;
     }
     
     public static class Word {
@@ -50,18 +45,15 @@ class Solution {
         }
     }
     
-    public static boolean checkChar(String s1, String s2) {
-        int diffCount = 0;
-
-        for (int i = 0; i < s1.length(); i++) {
-            if (s1.charAt(i) != s2.charAt(i)) {
-                diffCount++;
-
-                if (diffCount > 1) {
-                    return false;
-                }
-            }
+    private static boolean checkStr(String s1, String s2) {
+        int different = 0;
+        for(int i = 0; i < s1.length(); i++) {
+            if(s1.charAt(i) != s2.charAt(i))
+                different++;
+            
+            if(different > 1)
+                return false;
         }
-            return diffCount == 1;
+        return different == 1;
     }
 }
